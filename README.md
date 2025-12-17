@@ -90,12 +90,13 @@
 
 - [x] `Arithmetic` 클래스에 `add(a, b)` 메서드 추가 ✅
 - [x] `Arithmetic` 클래스에 `subtract(a, b)` 메서드 추가 ✅
-- [ ] `Arithmetic` 클래스에 `multiply(a, b)` 메서드 추가 (중간 우선순위)
+- [x] `Arithmetic` 클래스에 `multiply(a, b)` 메서드 추가 ✅
 - [x] `Arithmetic` 클래스에 `divide(a, b)` 메서드 추가 (정수 나눗셈) ✅
-- [ ] `Arithmetic` 클래스에 `quotient(a, b)` 메서드 추가 (실수 나눗셈) (중간 우선순위)
+- [x] `Arithmetic` 클래스에 `quotient(a, b)` 메서드 추가 (실수 나눗셈) ✅
 - [x] `divide(a, b)` 메서드에 `0 / 0` 예외 처리 추가 ✅
 - [x] 높은 우선순위 테스트 케이스 통과 확인 (7개) ✅
-- [ ] 중간 우선순위 테스트 케이스 통과 확인 (3개) (다음 단계)
+- [x] 중간 우선순위 테스트 케이스 통과 확인 (3개) ✅
+- [x] 모든 테스트 케이스 통과 확인 (10개) ✅
 - [ ] GREEN 단계 커밋 완료
 
 ## 프로젝트 구조

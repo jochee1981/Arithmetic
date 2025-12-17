@@ -31,6 +31,18 @@ class Arithmetic:
         """
         return a - b
     
+    def multiply(self, a, b):
+        """두 수의 곱을 계산합니다.
+        
+        Args:
+            a: 첫 번째 숫자
+            b: 두 번째 숫자
+            
+        Returns:
+            두 수의 곱
+        """
+        return a * b
+    
     def divide(self, a, b):
         """두 수의 정수 나눗셈을 계산합니다 (버림 처리).
         
@@ -47,6 +59,18 @@ class Arithmetic:
         if b == 0:
             raise ArithmeticError("Division by zero")
         return a // b
+    
+    def quotient(self, a, b):
+        """두 수의 실수 나눗셈을 계산합니다 (소수점 포함).
+        
+        Args:
+            a: 첫 번째 숫자 (피제수)
+            b: 두 번째 숫자 (제수)
+            
+        Returns:
+            실수 나눗셈 결과 (소수점 포함)
+        """
+        return a / b
 
 
 if __name__ == "__main__":
@@ -70,14 +94,25 @@ if __name__ == "__main__":
     print(f"   5 - 2 = {arithmetic.subtract(5, 2)}")
     print()
     
+    # 곱셈 예제
+    print("3. 곱셈 (Multiplication)")
+    print(f"   -5 * -3 = {arithmetic.multiply(-5, -3)}")
+    print(f"   0 * 10 = {arithmetic.multiply(0, 10)}")
+    print()
+    
     # 나눗셈 예제
-    print("3. 나눗셈 (Division - 정수 나눗셈)")
+    print("4. 나눗셈 (Division - 정수 나눗셈)")
     print(f"   5 / 2 = {arithmetic.divide(5, 2)}")
     print(f"   -10 / 2 = {arithmetic.divide(-10, 2)}")
     print()
     
+    # 실수 나눗셈 예제
+    print("5. 실수 나눗셈 (Quotient - 소수점 포함)")
+    print(f"   5 ÷ 2 = {arithmetic.quotient(5, 2)}")
+    print()
+    
     # 예외 처리 예제
-    print("4. 예외 처리 (Exception Handling)")
+    print("6. 예외 처리 (Exception Handling)")
     try:
         result = arithmetic.divide(0, 0)
         print(f"   0 / 0 = {result}")
