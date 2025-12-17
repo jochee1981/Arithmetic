@@ -99,9 +99,108 @@ Arithmetic/
 
 ---
 
-## 5. 테스트 실행 결과
+## 5. 테스트 케이스 진행 상황
 
-### 5.1 최종 테스트 실행 결과 (2025-12-16)
+### 5.1 개별 테스트 케이스 실행 이력
+
+| # | 테스트 케이스 | 실행 일시 | 결과 | 에러 메시지 | 커밋 상태 |
+|---|--------------|----------|------|------------|----------|
+| 1 | `test_add_1_plus_10_should_return_11` | 2025-12-16 | ❌ 실패 | `AttributeError: 'Arithmetic' object has no attribute 'add'` | ✅ 커밋됨 |
+| 2 | `test_add_0_plus_1_should_return_1` | 2025-12-16 | ❌ 실패 | `AttributeError: 'Arithmetic' object has no attribute 'add'` | ✅ 커밋됨 |
+| 3 | `test_add_negative1_plus_negative10_should_return_negative11` | 2025-12-16 | ❌ 실패 | `AttributeError: 'Arithmetic' object has no attribute 'add'` | ✅ 커밋됨 |
+| 4 | `test_subtract_5_minus_2_should_return_3` | 2025-12-16 | ❌ 실패 | `AttributeError: 'Arithmetic' object has no attribute 'subtract'` | ✅ 커밋됨 |
+| 5 | `test_multiply_negative5_by_negative3_should_return_15` | 2025-12-16 | ❌ 실패 | `AttributeError: 'Arithmetic' object has no attribute 'multiply'` | ✅ 커밋됨 |
+| 6 | `test_multiply_0_by_10_should_return_0` | 2025-12-16 | ❌ 실패 | `AttributeError: 'Arithmetic' object has no attribute 'multiply'` | ✅ 커밋됨 |
+| 7 | `test_divide_5_by_2_should_return_2` | 2025-12-16 | ❌ 실패 | `AttributeError: 'Arithmetic' object has no attribute 'divide'` | ✅ 커밋됨 |
+| 8 | `test_divide_negative10_by_2_should_return_negative5` | 2025-12-16 | ❌ 실패 | `AttributeError: 'Arithmetic' object has no attribute 'divide'` | ✅ 커밋됨 |
+| 9 | `test_quotient_5_divide_2_should_return_2_5` | 2025-12-16 | ❌ 실패 | `AttributeError: 'Arithmetic' object has no attribute 'quotient'` | ✅ 커밋됨 |
+| 10 | `test_divide_0_by_0_should_throw_arithmetic_exception` | 2025-12-16 | ❌ 실패 | `AttributeError: 'Arithmetic' object has no attribute 'divide'` | ✅ 커밋됨 |
+
+### 5.2 개별 테스트 실행 상세
+
+#### 테스트 #1: test_add_1_plus_10_should_return_11
+- **목적**: `1 + 10 = 11` 검증
+- **실행 결과**: ❌ 실패
+- **에러**: `AttributeError: 'Arithmetic' object has no attribute 'add'`
+- **상태**: RED 단계 - 예상된 실패
+- **커밋**: ✅ `8bfcc6b` - RED: Add failing test for arithmetic operations
+
+#### 테스트 #2: test_add_0_plus_1_should_return_1
+- **목적**: `0 + 1 = 1` 검증
+- **실행 결과**: ❌ 실패
+- **에러**: `AttributeError: 'Arithmetic' object has no attribute 'add'`
+- **상태**: RED 단계 - 예상된 실패
+- **커밋**: ✅ `8bfcc6b` - RED: Add failing test for arithmetic operations
+
+#### 테스트 #3: test_add_negative1_plus_negative10_should_return_negative11
+- **목적**: `-1 + (-10) = -11` 검증
+- **실행 결과**: ❌ 실패
+- **에러**: `AttributeError: 'Arithmetic' object has no attribute 'add'`
+- **상태**: RED 단계 - 예상된 실패
+- **커밋**: ✅ `8bfcc6b` - RED: Add failing test for arithmetic operations
+
+#### 테스트 #4: test_subtract_5_minus_2_should_return_3
+- **목적**: `5 - 2 = 3` 검증
+- **실행 결과**: ❌ 실패
+- **에러**: `AttributeError: 'Arithmetic' object has no attribute 'subtract'`
+- **상태**: RED 단계 - 예상된 실패
+- **커밋**: ✅ `8bfcc6b` - RED: Add failing test for arithmetic operations
+
+#### 테스트 #5: test_multiply_negative5_by_negative3_should_return_15
+- **목적**: `-5 * -3 = 15` 검증
+- **실행 결과**: ❌ 실패
+- **에러**: `AttributeError: 'Arithmetic' object has no attribute 'multiply'`
+- **상태**: RED 단계 - 예상된 실패
+- **커밋**: ✅ `8bfcc6b` - RED: Add failing test for arithmetic operations
+
+#### 테스트 #6: test_multiply_0_by_10_should_return_0
+- **목적**: `0 * 10 = 0` 검증
+- **실행 결과**: ❌ 실패
+- **에러**: `AttributeError: 'Arithmetic' object has no attribute 'multiply'`
+- **상태**: RED 단계 - 예상된 실패
+- **커밋**: ✅ `8bfcc6b` - RED: Add failing test for arithmetic operations
+
+#### 테스트 #7: test_divide_5_by_2_should_return_2
+- **목적**: `5 / 2 = 2` (정수 나눗셈) 검증
+- **실행 결과**: ❌ 실패
+- **에러**: `AttributeError: 'Arithmetic' object has no attribute 'divide'`
+- **상태**: RED 단계 - 예상된 실패
+- **커밋**: ✅ `8bfcc6b` - RED: Add failing test for arithmetic operations
+
+#### 테스트 #8: test_divide_negative10_by_2_should_return_negative5
+- **목적**: `-10 / 2 = -5` 검증
+- **실행 결과**: ❌ 실패
+- **에러**: `AttributeError: 'Arithmetic' object has no attribute 'divide'`
+- **상태**: RED 단계 - 예상된 실패
+- **커밋**: ✅ `8bfcc6b` - RED: Add failing test for arithmetic operations
+
+#### 테스트 #9: test_quotient_5_divide_2_should_return_2_5
+- **목적**: `5 ÷ 2 = 2.5` (실수 나눗셈) 검증
+- **실행 결과**: ❌ 실패
+- **에러**: `AttributeError: 'Arithmetic' object has no attribute 'quotient'`
+- **상태**: RED 단계 - 예상된 실패
+- **커밋**: ✅ `8bfcc6b` - RED: Add failing test for arithmetic operations
+
+#### 테스트 #10: test_divide_0_by_0_should_throw_arithmetic_exception
+- **목적**: `0 / 0` 시 `ArithmeticError` 예외 발생 검증
+- **실행 결과**: ❌ 실패
+- **에러**: `AttributeError: 'Arithmetic' object has no attribute 'divide'`
+- **상태**: RED 단계 - 예상된 실패
+- **커밋**: ✅ `8bfcc6b` - RED: Add failing test for arithmetic operations
+
+### 5.3 테스트 진행 요약
+
+- **총 테스트 케이스**: 10개
+- **실행 완료**: 10개 (100%)
+- **실패**: 10개 (RED 단계 - 예상된 결과)
+- **성공**: 0개
+- **커밋 완료**: 10개 (모든 테스트가 하나의 커밋에 포함됨)
+
+---
+
+## 6. 테스트 실행 결과
+
+### 6.1 최종 테스트 실행 결과 (2025-12-16)
 
 ```
 ============================= test session starts =============================
@@ -122,7 +221,7 @@ test/test_arithmetic.py::TestArithmeticOperations::test_divide_0_by_0_should_thr
 ============================= 10 failed in 0.19s =============================
 ```
 
-### 5.2 테스트 요약
+### 6.2 테스트 요약
 
 | 항목 | 결과 |
 |------|------|
@@ -131,7 +230,7 @@ test/test_arithmetic.py::TestArithmeticOperations::test_divide_0_by_0_should_thr
 | 실패한 테스트 | 10개 |
 | 성공률 | 0% |
 
-### 5.3 실패 원인
+### 6.3 실패 원인
 
 모든 테스트가 동일한 원인으로 실패했습니다:
 ```
@@ -146,9 +245,9 @@ AttributeError: 'Arithmetic' object has no attribute 'quotient'
 
 ---
 
-## 6. 테스트 커버리지
+## 7. 테스트 커버리지
 
-### 6.1 커버리지 리포트
+### 7.1 커버리지 리포트
 
 ```
 Name                Stmts   Miss  Cover   Missing
@@ -159,7 +258,7 @@ src\arithmetic.py       2      0   100%
 TOTAL                   2      0   100%
 ```
 
-### 6.2 커버리지 분석
+### 7.2 커버리지 분석
 
 - **전체 코드 커버리지**: 100%
 - **현재 상태**: `Arithmetic` 클래스가 빈 클래스(클래스 정의만 존재)이므로 모든 라인이 실행되었습니다.
@@ -167,9 +266,9 @@ TOTAL                   2      0   100%
 
 ---
 
-## 7. 현재 구현 상태
+## 8. 현재 구현 상태
 
-### 7.1 소스 코드 (`src/arithmetic.py`)
+### 8.1 소스 코드 (`src/arithmetic.py`)
 
 ```python
 """
@@ -186,7 +285,7 @@ class Arithmetic:
     pass
 ```
 
-### 7.2 구현 필요한 메서드
+### 8.2 구현 필요한 메서드
 
 다음 메서드들이 구현되어야 합니다:
 
@@ -198,25 +297,25 @@ class Arithmetic:
 
 ---
 
-## 8. Git 브랜치 상태
+## 9. Git 브랜치 상태
 
-### 8.1 현재 브랜치
+### 9.1 현재 브랜치
 - **활성 브랜치**: `red`
 - **목적**: RED 단계 작업
 
-### 8.2 커밋 이력
+### 9.2 커밋 이력
 - `8bfcc6b` - RED: Add failing test for arithmetic operations (test_add_1_plus_10_should_return_11 and 9 more tests)
 - `7c66999` - Initial commit: Add README.md and project setup
 
-### 8.3 원격 저장소
+### 9.3 원격 저장소
 - **저장소**: https://github.com/jochee1981/Arithmetic.git
 - **브랜치**: `red`, `main`
 
 ---
 
-## 9. 다음 단계 (GREEN 단계)
+## 10. 다음 단계 (GREEN 단계)
 
-### 9.1 작업 계획
+### 10.1 작업 계획
 
 1. **Arithmetic 클래스 메서드 구현**
    - `add(a, b)` 메서드 구현
@@ -235,7 +334,7 @@ class Arithmetic:
    - 구현 코드 커밋
    - 원격 저장소에 푸시
 
-### 9.2 예상 결과
+### 10.2 예상 결과
 
 GREEN 단계 완료 후:
 - 총 테스트 수: 10개
@@ -245,20 +344,20 @@ GREEN 단계 완료 후:
 
 ---
 
-## 10. 환경 설정
+## 11. 환경 설정
 
-### 10.1 사용 기술
+### 11.1 사용 기술
 - **언어**: Python 3.10.11
 - **테스트 프레임워크**: pytest 9.0.2
 - **커버리지 도구**: pytest-cov 7.0.0
 
-### 10.2 의존성 (`requirements.txt`)
+### 11.2 의존성 (`requirements.txt`)
 ```
 pytest>=7.4.0
 pytest-cov>=4.1.0
 ```
 
-### 10.3 실행 명령어
+### 11.3 실행 명령어
 
 #### 테스트 실행
 ```bash
@@ -272,7 +371,7 @@ python -m pytest test/test_arithmetic.py -v --cov=src --cov-report=term-missing
 
 ---
 
-## 11. 참고사항
+## 12. 참고사항
 
 - 모든 테스트 케이스는 기능의 정확성과 예외 처리를 포함하여 클래스의 모든 기능을 검증합니다.
 - RED 단계가 성공적으로 완료되었습니다.
