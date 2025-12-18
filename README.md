@@ -133,23 +133,30 @@ src/
 
 **테스트 결과:** ✅ 14개 테스트 모두 통과
 
-#### STEP 2: 비즈니스 로직 계층 (Service Layer) ⏳
+#### STEP 2: 비즈니스 로직 계층 (Service Layer) ✅
 
-- [ ] **Calculator Service 클래스 생성**
+- [x] **Calculator Service 클래스 생성**
   - 연산 로직과 UI 로직 분리
   - SRP(Single Responsibility Principle) 준수
   - 연산 전략 등록 및 관리
 
-- [ ] **연산 로직 통합**
+- [x] **연산 로직 통합**
   - Operation Strategy 패턴으로 if-elif 체인 제거
   - 새로운 연산 추가 시 기존 코드 수정 불필요
+  - register_operation() 메서드로 동적 연산 등록
 
 **디렉토리 구조:**
 ```
 src/
 ├── service/
-│   └── calculator_service.py     # 계산기 비즈니스 로직
+│   └── calculator_service.py     # 계산기 비즈니스 로직 ✅
 ```
+
+**테스트 결과:** ✅ 14개 테스트 모두 통과 (전체 38개 테스트 통과)
+
+**개선 사항:**
+- ❌ 기존: `calculate()` 함수의 if-elif 체인 (Switch Statement Code Smell)
+- ✅ 개선: Strategy Pattern으로 연산자 처리, OCP 준수
 
 #### STEP 3: GUI 프레젠테이션 계층 (Presentation Layer) ⏳
 
