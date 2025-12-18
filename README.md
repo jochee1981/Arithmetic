@@ -99,6 +99,199 @@
 - [x] 모든 테스트 케이스 통과 확인 (10개) ✅
 - [ ] GREEN 단계 커밋 완료
 
+---
+
+## 🔧 REFACTOR 단계 작업 목록
+
+### PyQt6 GUI 계산기로 리팩토링 계획
+
+본 프로젝트는 콘솔 프로그램에서 **PyQt6 GUI 애플리케이션**으로 리팩토링하며, **SOLID 원칙**과 **디자인 패턴**을 적용합니다.
+
+#### STEP 1: 도메인 모델 분리 (Domain Layer) ✅
+
+- [x] **Operation 추상 클래스 생성**
+  - Strategy Pattern 적용
+  - 연산자별 클래스 분리 (Addition, Subtraction, Multiplication, Division)
+  - OCP(Open-Closed Principle) 준수
+
+- [x] **연산 결과 Value Object 생성**
+  - CalculationResult 클래스 구현
+  - 불변 객체로 결과 캡슐화 (dataclass frozen=True)
+
+**디렉토리 구조:**
+```
+src/
+├── domain/
+│   ├── operation.py              # Operation 추상 클래스 ✅
+│   ├── calculation_result.py     # CalculationResult Value Object ✅
+│   └── operations/
+│       ├── addition.py           # 덧셈 연산 ✅
+│       ├── subtraction.py        # 뺄셈 연산 ✅
+│       ├── multiplication.py     # 곱셈 연산 ✅
+│       └── division.py           # 나눗셈 연산 ✅
+```
+
+**테스트 결과:** ✅ 14개 테스트 모두 통과
+
+#### STEP 2: 비즈니스 로직 계층 (Service Layer) ✅
+
+- [x] **Calculator Service 클래스 생성**
+  - 연산 로직과 UI 로직 분리
+  - SRP(Single Responsibility Principle) 준수
+  - 연산 전략 등록 및 관리
+
+- [x] **연산 로직 통합**
+  - Operation Strategy 패턴으로 if-elif 체인 제거
+  - 새로운 연산 추가 시 기존 코드 수정 불필요
+  - register_operation() 메서드로 동적 연산 등록
+
+**디렉토리 구조:**
+```
+src/
+├── service/
+│   └── calculator_service.py     # 계산기 비즈니스 로직 ✅
+```
+
+**테스트 결과:** ✅ 14개 테스트 모두 통과 (전체 38개 테스트 통과)
+
+**개선 사항:**
+- ❌ 기존: `calculate()` 함수의 if-elif 체인 (Switch Statement Code Smell)
+- ✅ 개선: Strategy Pattern으로 연산자 처리, OCP 준수
+
+#### STEP 3: GUI 프레젠테이션 계층 (Presentation Layer) ✅
+
+- [x] **PyQt6 의존성 추가**
+  - requirements.txt에 PyQt6>=6.6.0 추가
+
+- [x] **Calculator Window 구현 (View)**
+  - PyQt6로 계산기 UI 구현
+  - 버튼 레이아웃 (0-9, +, -, *, /, =, C, .)
+  - 디스플레이 영역 (수식 표시, 결과 표시)
+  - Signal/Slot 메커니즘으로 이벤트 처리
+
+- [x] **Calculator Presenter 구현**
+  - MVP(Model-View-Presenter) 패턴 적용
+  - View와 Service 간 중재자 역할
+  - 사용자 입력 이벤트 처리
+  - 상태 관리 (현재 값, 피연산자, 연산자)
+
+**디렉토리 구조:**
+```
+src/
+├── ui/
+│   ├── calculator_window.py     # GUI View (PyQt6) ✅
+│   └── calculator_presenter.py  # Presenter (MVP) ✅
+```
+
+**MVP 패턴 구조:**
+```
+View (CalculatorWindow)
+    ↓ Signal
+Presenter (CalculatorPresenter)
+    ↓ Method Call
+Model (CalculatorService)
+```
+
+**주요 기능:**
+- ✅ 숫자 입력 (0-9)
+- ✅ 사칙연산 (+, -, *, /)
+- ✅ 소수점 입력
+- ✅ 초기화 (C)
+- ✅ 연속 계산
+- ✅ 에러 처리 및 표시
+
+#### STEP 4: 의존성 주입 및 테스트 ✅
+
+- [x] **의존성 역전 적용 (DIP)**
+  - 추상화에 의존하도록 설계
+  - main_gui.py에서 의존성 조립
+  - Service, View, Presenter 분리
+
+- [x] **GUI 진입점 생성**
+  - main_gui.py 파일 생성 ✅
+  - 의존성 주입 컨테이너 역할
+  - MVP 패턴 조립
+
+**최종 프로젝트 구조:**
+```
+Arithmetic/
+├── main.py                       # 콘솔 버전 (레거시) ✅
+├── main_gui.py                   # GUI 진입점 ✅
+├── requirements.txt              # PyQt6 의존성 추가 ✅
+├── src/
+│   ├── arithmetic.py             # 기존 산술 연산 클래스 ✅
+│   ├── domain/                   # 도메인 계층 ✅
+│   │   ├── operation.py
+│   │   ├── calculation_result.py
+│   │   └── operations/
+│   ├── service/                  # 서비스 계층 ✅
+│   │   └── calculator_service.py
+│   └── ui/                       # 프레젠테이션 계층 ✅
+│       ├── calculator_window.py
+│       └── calculator_presenter.py
+├── test/
+│   ├── test_arithmetic.py        # 기존 테스트 ✅
+│   ├── test_domain.py            # Domain 테스트 ✅
+│   └── test_service.py           # Service 테스트 ✅
+└── Report/
+    ├── STEP2_Service_Layer_Report.md  # 리팩토링 보고서 ✅
+    └── (기타 문서들)
+```
+
+**실행 방법:**
+```bash
+# GUI 계산기 실행
+python main_gui.py
+```
+
+### SOLID 원칙 적용 체크리스트
+
+- [ ] **SRP (Single Responsibility Principle)**
+  - 각 클래스가 단일 책임만 가짐
+  
+- [ ] **OCP (Open-Closed Principle)**
+  - 확장에는 열려있고, 수정에는 닫혀있음
+  - 새로운 연산 추가 시 기존 코드 수정 불필요
+  
+- [ ] **LSP (Liskov Substitution Principle)**
+  - 모든 Operation 구현체가 Operation을 대체 가능
+  
+- [ ] **ISP (Interface Segregation Principle)**
+  - 최소한의 인터페이스만 제공
+  
+- [ ] **DIP (Dependency Inversion Principle)**
+  - 상위 모듈이 하위 모듈이 아닌 추상화에 의존
+
+### 디자인 패턴 적용 체크리스트
+
+- [ ] **Strategy Pattern**
+  - 연산 알고리즘을 캡슐화하고 교체 가능하게 구현
+  
+- [ ] **MVP Pattern**
+  - Model(Service), View(Window), Presenter로 계층 분리
+  
+- [ ] **Dependency Injection**
+  - 의존성을 외부에서 주입하여 결합도 감소
+
+### Code Smell 제거 목록
+
+- [ ] **Long Method 제거**
+  - main() 함수의 여러 책임을 계층별로 분리
+  
+- [ ] **Switch Statement 제거**
+  - if-elif 체인을 Strategy Pattern으로 대체
+  
+- [ ] **Feature Envy 제거**
+  - 각 클래스가 자신의 데이터를 처리하도록 수정
+  
+- [ ] **Primitive Obsession 제거**
+  - 연산자 문자열을 Operation 클래스로 캡슐화
+  
+- [ ] **Duplicated Code 제거**
+  - 중복된 연산자 변환 로직 통합
+
+---
+
 ## 프로젝트 구조
 
 ```
@@ -125,7 +318,37 @@ Arithmetic/
 
 ## 실행 방법
 
-(프로젝트 설정 후 업데이트 예정)
+### 의존성 설치
+
+```bash
+pip install -r requirements.txt
+```
+
+### 1. 콘솔 계산기 실행 (현재 버전)
+
+```bash
+python main.py
+```
+
+### 2. GUI 계산기 실행 (리팩토링 후)
+
+```bash
+python main_gui.py
+```
+
+*※ GUI 버전은 REFACTOR 단계 완료 후 실행 가능*
+
+### 3. 테스트 실행
+
+```bash
+pytest
+```
+
+### 4. 커버리지 확인
+
+```bash
+pytest --cov=src --cov-report=html
+```
 
 ## 참고사항
 
