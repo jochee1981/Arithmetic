@@ -107,28 +107,31 @@
 
 본 프로젝트는 콘솔 프로그램에서 **PyQt6 GUI 애플리케이션**으로 리팩토링하며, **SOLID 원칙**과 **디자인 패턴**을 적용합니다.
 
-#### STEP 1: 도메인 모델 분리 (Domain Layer) ⏳
+#### STEP 1: 도메인 모델 분리 (Domain Layer) ✅
 
-- [ ] **Operation 추상 클래스 생성**
+- [x] **Operation 추상 클래스 생성**
   - Strategy Pattern 적용
   - 연산자별 클래스 분리 (Addition, Subtraction, Multiplication, Division)
   - OCP(Open-Closed Principle) 준수
 
-- [ ] **연산 결과 Value Object 생성**
+- [x] **연산 결과 Value Object 생성**
   - CalculationResult 클래스 구현
-  - 불변 객체로 결과 캡슐화
+  - 불변 객체로 결과 캡슐화 (dataclass frozen=True)
 
 **디렉토리 구조:**
 ```
 src/
 ├── domain/
-│   ├── operation.py              # Operation 추상 클래스
+│   ├── operation.py              # Operation 추상 클래스 ✅
+│   ├── calculation_result.py     # CalculationResult Value Object ✅
 │   └── operations/
-│       ├── addition.py           # 덧셈 연산
-│       ├── subtraction.py        # 뺄셈 연산
-│       ├── multiplication.py     # 곱셈 연산
-│       └── division.py           # 나눗셈 연산
+│       ├── addition.py           # 덧셈 연산 ✅
+│       ├── subtraction.py        # 뺄셈 연산 ✅
+│       ├── multiplication.py     # 곱셈 연산 ✅
+│       └── division.py           # 나눗셈 연산 ✅
 ```
+
+**테스트 결과:** ✅ 14개 테스트 모두 통과
 
 #### STEP 2: 비즈니스 로직 계층 (Service Layer) ⏳
 
