@@ -158,60 +158,90 @@ src/
 - ❌ 기존: `calculate()` 함수의 if-elif 체인 (Switch Statement Code Smell)
 - ✅ 개선: Strategy Pattern으로 연산자 처리, OCP 준수
 
-#### STEP 3: GUI 프레젠테이션 계층 (Presentation Layer) ⏳
+#### STEP 3: GUI 프레젠테이션 계층 (Presentation Layer) ✅
 
-- [ ] **PyQt6 의존성 추가**
+- [x] **PyQt6 의존성 추가**
   - requirements.txt에 PyQt6>=6.6.0 추가
 
-- [ ] **Calculator Window 구현 (View)**
+- [x] **Calculator Window 구현 (View)**
   - PyQt6로 계산기 UI 구현
   - 버튼 레이아웃 (0-9, +, -, *, /, =, C, .)
   - 디스플레이 영역 (수식 표시, 결과 표시)
+  - Signal/Slot 메커니즘으로 이벤트 처리
 
-- [ ] **Calculator Presenter 구현**
+- [x] **Calculator Presenter 구현**
   - MVP(Model-View-Presenter) 패턴 적용
   - View와 Service 간 중재자 역할
   - 사용자 입력 이벤트 처리
+  - 상태 관리 (현재 값, 피연산자, 연산자)
 
 **디렉토리 구조:**
 ```
 src/
 ├── ui/
-│   ├── calculator_window.py     # GUI View (PyQt6)
-│   └── calculator_presenter.py  # Presenter (MVP)
+│   ├── calculator_window.py     # GUI View (PyQt6) ✅
+│   └── calculator_presenter.py  # Presenter (MVP) ✅
 ```
 
-#### STEP 4: 의존성 주입 및 테스트 ⏳
+**MVP 패턴 구조:**
+```
+View (CalculatorWindow)
+    ↓ Signal
+Presenter (CalculatorPresenter)
+    ↓ Method Call
+Model (CalculatorService)
+```
 
-- [ ] **의존성 역전 적용 (DIP)**
+**주요 기능:**
+- ✅ 숫자 입력 (0-9)
+- ✅ 사칙연산 (+, -, *, /)
+- ✅ 소수점 입력
+- ✅ 초기화 (C)
+- ✅ 연속 계산
+- ✅ 에러 처리 및 표시
+
+#### STEP 4: 의존성 주입 및 테스트 ✅
+
+- [x] **의존성 역전 적용 (DIP)**
   - 추상화에 의존하도록 설계
   - main_gui.py에서 의존성 조립
+  - Service, View, Presenter 분리
 
-- [ ] **단위 테스트 작성**
-  - Service 계층 테스트
-  - Domain 계층 테스트
-  - Presenter 로직 테스트
-
-- [ ] **GUI 진입점 생성**
-  - main_gui.py 파일 생성
+- [x] **GUI 진입점 생성**
+  - main_gui.py 파일 생성 ✅
   - 의존성 주입 컨테이너 역할
+  - MVP 패턴 조립
 
 **최종 프로젝트 구조:**
 ```
 Arithmetic/
-├── main.py                       # 콘솔 버전 (레거시)
-├── main_gui.py                   # GUI 진입점 (NEW)
-├── requirements.txt              # PyQt6 의존성 추가
+├── main.py                       # 콘솔 버전 (레거시) ✅
+├── main_gui.py                   # GUI 진입점 ✅
+├── requirements.txt              # PyQt6 의존성 추가 ✅
 ├── src/
-│   ├── arithmetic.py             # 기존 산술 연산 클래스
-│   ├── domain/                   # 도메인 계층 (NEW)
-│   ├── service/                  # 서비스 계층 (NEW)
-│   └── ui/                       # 프레젠테이션 계층 (NEW)
+│   ├── arithmetic.py             # 기존 산술 연산 클래스 ✅
+│   ├── domain/                   # 도메인 계층 ✅
+│   │   ├── operation.py
+│   │   ├── calculation_result.py
+│   │   └── operations/
+│   ├── service/                  # 서비스 계층 ✅
+│   │   └── calculator_service.py
+│   └── ui/                       # 프레젠테이션 계층 ✅
+│       ├── calculator_window.py
+│       └── calculator_presenter.py
 ├── test/
-│   ├── test_arithmetic.py        # 기존 테스트
-│   └── test_calculator_service.py # 새로운 테스트 (NEW)
+│   ├── test_arithmetic.py        # 기존 테스트 ✅
+│   ├── test_domain.py            # Domain 테스트 ✅
+│   └── test_service.py           # Service 테스트 ✅
 └── Report/
-    └── Refactoring_Report.md     # 리팩토링 보고서 (NEW)
+    ├── STEP2_Service_Layer_Report.md  # 리팩토링 보고서 ✅
+    └── (기타 문서들)
+```
+
+**실행 방법:**
+```bash
+# GUI 계산기 실행
+python main_gui.py
 ```
 
 ### SOLID 원칙 적용 체크리스트
